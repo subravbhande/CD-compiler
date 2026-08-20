@@ -1,0 +1,6 @@
+MathCompiler.exe
+program.exe
+program.cpp
+.vs/
+*.o
+*.obj
