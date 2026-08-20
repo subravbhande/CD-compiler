@@ -42,61 +42,61 @@ void displayTokens(
 // MAIN
 // ==========================================
 
-int main() {
-
-    cout << "=============================================\n";
-
-    cout << "          MATH MINI G++ COMPILER             \n";
-
-    cout << "=============================================\n";
-
-
-    cout << "\nSupported Math Functions:\n";
-
-    cout << "sqrt(), pow(), abs(), sin(), cos(), tan()\n";
-
-    cout << "log(), log10(), ceil(), floor(), exp()\n";
-
-    cout << "round(), fabs()\n";
-
-
-    cout << "\n---------------------------------------------\n";
-
-    cout << "Enter your C++ program.\n";
-
-    cout << "Type END on a separate line when finished.\n";
-
-    cout << "---------------------------------------------\n\n";
-
+int main(int argc, char* argv[]) {
 
     string source;
-
     string line;
-
+    bool fromFile = false;
 
     // ========================================
     // INPUT SOURCE CODE
     // ========================================
 
-    while (true) {
+    if (argc > 1) {
+        string inputFileName = argv[1];
+        ifstream inputFile(inputFileName);
 
-        getline(cin, line);
+        if (!inputFile) {
+            cout << "\nError: Could not open input file "
+                 << inputFileName << "\n";
+            return 1;
+        }
 
+        while (getline(inputFile, line)) {
+            source += line + "\n";
+        }
 
-        if (line == "END")
-            break;
-
-
-        source += line + "\n";
+        inputFile.close();
+        fromFile = true;
+        cout << "\nLoaded source code from: " << inputFileName << "\n";
     }
+    else {
+        cout << "=============================================\n";
+        cout << "          MATH MINI G++ COMPILER             \n";
+        cout << "=============================================\n";
 
+        cout << "\nSupported Math Functions:\n";
+        cout << "sqrt(), pow(), abs(), sin(), cos(), tan()\n";
+        cout << "log(), log10(), ceil(), floor(), exp()\n";
+        cout << "round(), fabs()\n";
+
+        cout << "\n---------------------------------------------\n";
+        cout << "Enter your C++ program.\n";
+        cout << "Type END on a separate line when finished.\n";
+        cout << "---------------------------------------------\n\n";
+
+        while (getline(cin, line)) {
+            if (line == "END")
+                break;
+            source += line + "\n";
+        }
+    }
 
     // ========================================
     // SAVE SOURCE CODE
     // ========================================
 
-    string sourceFile =
-        "program.cpp";
+    string sourceFile = "program.cpp";
 
 
     ofstream file(sourceFile);
