@@ -1,21 +1,11 @@
 #include <iostream>
-#include <math.h>
-using namespace std;
-int main() {
-
-    double angle = 0;
-
-    cout << "sin(0) = "
-         << sin(angle)
-         << endl;
-
-    cout << "cos(0) = "
-         << cos(angle)
-         << endl;
-
-    cout << "tan(0) = "
-         << tan(angle)
-         << endl;
-
-    return 0;
-}
+#include <cmath> 
+using namespace std; 
+int main() {     
+     double num = 144;     
+     double result = sqrt(num);     
+     double power = pow(2, 10);     
+     cout << "Square root of 144 = " << result << endl;     
+     cout << "2 ^ 10 = " << power << endl;     
+     return 0;
+} 
